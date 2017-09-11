@@ -13,5 +13,6 @@ public interface ImplicacionDAO extends CrudRepository<Implicacion, Long> {
 	Implicacion findFirstByPreposicionIdAndImplicacionId(Long pid, Long iid);
 	
 	List<Implicacion> findByPreposicionId(Long pid);
+	List<Implicacion> findByImplicacionId(Long pid);
 
 }

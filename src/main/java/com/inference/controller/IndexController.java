@@ -84,10 +84,24 @@ public class IndexController {
 			}
 
 		}
+		
+		List<Implicacion> preposiciones = implicacionDao.findByImplicacionId(rule);
+		
+		for (Implicacion i : preposiciones) {
+
+			Optional<Proposicion> p = proposicionDao.findById(i.getPreposicionId());
+			if (p.isPresent()) {
+				str.append(p.get().getDefinicion());
+				str.append(" ; ");
+			}
+
+		}
+		
 
 		diagnostico.setDiagnostico(str.toString());
 
 		model.addAttribute("dto", diagnostico);
+		model.addAttribute("diagnostico", str.toString());
 		model.addAttribute("rules", proposicionDao.findAll());
 
 		return "index2";

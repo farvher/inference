@@ -12,7 +12,7 @@
 		<h1>Sistema para diagnostico</h1>
 
 
-		<form th:action="@{/process}" th:object="${dto}">
+		<form th:action="@{/process}" th:object="${dto}" method="post">
 
 			<div class="form-group">
 				Nombre y apellido: <input type="text" class="form-control"
