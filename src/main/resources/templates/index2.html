@@ -19,29 +19,48 @@
 					th:required="required" th:field="*{name}" />
 			</div>
 			<div class="form-group">
-				Edad: <input type="text" class="form-control"
-					th:required="required" th:field="*{edad}" />
+				Edad: <input type="text" class="form-control" th:required="required"
+					th:field="*{edad}" />
 			</div>
 			<div class="form-group">
 				Sexo: <select th:field=*{sexo} class="form-control">
-				<option value="M">M</option>
-				<option value="F">F</option>
+					<option value="M">M</option>
+					<option value="F">F</option>
 				</select>
 			</div>
 			<div class="form-group">
 				Sintomas:<select class="form-control" th:field="*{rule}">
-						<option th:each="c : ${rules}" th:value="${c.id}"
-								th:text="${c.definicion}"></option>
+					<option th:each="c : ${rules}" th:value="${c.id}"
+						th:text="${c.definicion}"></option>
 
-						</select>
+				</select>
 			</div>
 			<div class="form-group">
-						<input type="submit" class="btn btn-default"
-							value="Diagnostico" />
-					</div>
-			
+				<input type="submit" class="btn btn-default" value="Diagnostico" />
+			</div>
+
 			<div class="form-group" th:if="${diagnostico} !=null">
-				Diagnostico : <textarea rows="10" cols="20" th:text="${diagnostico}"></textarea>
+
+
+				<h3>Diagnostico (implicacion)</h3>
+				<ul class="list-group">
+					<li class="list-group-item " th:each=" d : ${diagnostico}"
+						th:text="${d}"></li>
+
+				</ul>
+
+			</div>
+
+			<div class="form-group" th:if="${silogismo} !=null">
+
+
+				<h3>Diagnostico (Silogismo hipotetico)</h3>
+				<ul class="list-group">
+					<li class="list-group-item " th:each=" s : ${silogismo}"
+						th:text="${s}"></li>
+
+				</ul>
+
 			</div>
 
 		</form>

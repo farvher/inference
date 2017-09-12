@@ -1,5 +1,6 @@
 package com.inference.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -51,8 +52,11 @@ public class IndexController {
 
 		p.setDefinicion(implicacion.getP());
 		q.setDefinicion(implicacion.getQ());
-
-		proposicionDao.save(p);
+		
+		if (proposicionDao.findFirstByDefinicion(implicacion.getP())==null){
+			proposicionDao.save(p);
+		}
+		
 		proposicionDao.save(q);
 
 		Proposicion r = proposicionDao.findFirstByDefinicion(implicacion.getP());
@@ -70,7 +74,7 @@ public class IndexController {
 	@PostMapping("/process")
 	public String process(@ModelAttribute diagnosticoDTO diagnostico, Model model) {
 
-		StringBuilder str = new StringBuilder();
+		List<String> diagnosticos = new ArrayList<>();
 		Long rule = diagnostico.getRule();
 
 		List<Implicacion> implicaciones = implicacionDao.findByPreposicionId(rule);
@@ -79,29 +83,25 @@ public class IndexController {
 
 			Optional<Proposicion> p = proposicionDao.findById(i.getImplicacionId());
 			if (p.isPresent()) {
-				str.append(p.get().getDefinicion());
-				str.append(" ; ");
+				diagnosticos.add(p.get().getDefinicion());
 			}
 
 		}
 		
-		List<Implicacion> preposiciones = implicacionDao.findByImplicacionId(rule);
+//		List<Implicacion> preposiciones = implicacionDao.findByImplicacionId(rule);
+//		
+//		for (Implicacion i : preposiciones) {
+//
+//			Optional<Proposicion> p = proposicionDao.findById(i.getPreposicionId());
+//			if (p.isPresent()) {
+//				diagnosticos.add(p.get().getDefinicion());
+//			}
+//
+//		}
 		
-		for (Implicacion i : preposiciones) {
-
-			Optional<Proposicion> p = proposicionDao.findById(i.getPreposicionId());
-			if (p.isPresent()) {
-				str.append(p.get().getDefinicion());
-				str.append(" ; ");
-			}
-
-		}
-		
-
-		diagnostico.setDiagnostico(str.toString());
 
 		model.addAttribute("dto", diagnostico);
-		model.addAttribute("diagnostico", str.toString());
+		model.addAttribute("diagnostico", diagnosticos);
 		model.addAttribute("rules", proposicionDao.findAll());
 
 		return "index2";
