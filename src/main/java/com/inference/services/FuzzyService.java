@@ -15,6 +15,8 @@ public interface FuzzyService {
 	
 	String fuzzy(TruthValueDto tv);
 	
+	String fuzzy2(TruthValueDto tv);
+	
 	String DienesRichardImplication(TruthValueDto tv,TruthValueDto tv2);
 	
 	String ZadethImplication(TruthValueDto tv);

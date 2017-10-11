@@ -88,6 +88,13 @@ public class FuzzyServiceImpl implements FuzzyService {
 		Double answer = memberShipFunction.trapezoidal(t.getValue(), t.getCriterios());
 		return buildAnswer(answer);
 	}
+	
+	@Override
+	public String fuzzy2(TruthValueDto t) {
+		Double answer = memberShipFunction.triangular(t.getValue(), t.getCriterios());
+		return buildAnswer(answer);
+	}
+
 
 	@Override
 	public String DienesRichardImplication(TruthValueDto tv, TruthValueDto tv2) {
@@ -107,4 +114,5 @@ public class FuzzyServiceImpl implements FuzzyService {
 		return null;
 	}
 
+	
 }

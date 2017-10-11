@@ -71,16 +71,52 @@
 
 			<br />
 
-			<div th:if="${answer !=null}" >
-			<div class="alert alert-success">
-				El computador comprado por el cliente <label th:text="${economia}"></label>
-				de Precio justo y <label th:text="${quality}"></label> De calidad, 
-				
-				<label th:text="${answer}"></label> Satisfactoria la compra
+			<div th:if="${answer !=null}">
+				<div class="alert alert-success">
+					El computador comprado por el cliente <label th:text="${economia}"></label>
+					de Precio justo y <label th:text="${quality}"></label> De calidad,
+
+					<label th:text="${answer}"></label> Satisfactoria la compra
 				</div>
 
-			</div>
 
+
+			</div>
+			<table class="table table-striped table-bordered">
+
+				<tr>
+					<td>R1</td>
+					<td>Si el precio es justo</td>
+					<td>y</td>
+					<td>Si es de calidad</td>
+					<td>Entonces</td>
+					<td>Es satisfactoria la compra</td>
+				</tr>
+				<tr>
+					<td>R2</td>
+					<td>Si el precio es justo</td>
+					<td>y</td>
+					<td>Si NO es de calidad</td>
+					<td>Entonces</td>
+					<td>NO es satisfactoria la compra</td>
+				</tr>
+				<tr>
+					<td>R3</td>
+					<td>Si el precio NO es justo</td>
+					<td>y</td>
+					<td>Si es de calidad</td>
+					<td>Entonces</td>
+					<td>NO es satisfactoria la compra</td>
+				</tr>
+				<tr>
+					<td>R4</td>
+					<td>Si el precio NO es justo</td>
+					<td>y</td>
+					<td>Si NO es de calidad</td>
+					<td>Entonces</td>
+					<td>NO es satisfactoria la compra</td>
+				</tr>
+			</table>
 
 
 		</div>

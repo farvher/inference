@@ -59,7 +59,7 @@ public class FuzzyController {
 		m.addAttribute("answer", answer);
 		m.addAttribute("precio", input1);
 		m.addAttribute("calidad", input2);
-		m.addAttribute("economia", fuzzyService.fuzzy(tv));
+		m.addAttribute("economia", fuzzyService.fuzzy2(tv));
 		m.addAttribute("quality", fuzzyService.fuzzy(tv2));
 
 		return FUZZY_VIEW;
