@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<head th:replace="head :: header">
+<title>Motor de inferencia</title>
+</head>
+<body>
+	<div th:replace="header :: cabezote"></div>
+	<div class="container">
+
+
+		<h1>Motor de inferencia difuso</h1>
+
+
+		<div>
+
+			<h2>Satisfaccion compra de computador :</h2>
+			<form th:action="@{/fuzzy-process}" method="post">
+
+				<div class="form-group">
+					<label for="input1">Precio: </label> <input type="number"
+						class="form-control" placeholder="Economia entre 100000 a 5000000"
+						max="5000000" min="100000" name="input1" id="input1"
+						required="required" th:value="${precio}" />
+				</div>
+				<div class="form-group">
+					<label for="input2">Calidad :</label> <input type="number"
+						name="input2" id="input2" class="form-control"
+						placeholder="Calidad entre 1 y 10" max="10" min="1"
+						required="required" th:value="${calidad}" />
+				</div>
+				<div class="form-group">
+					<label>Configuracion Economia</label>
+					<div class="form-group">
+						<div class="form-group">
+							Es precio Injusto : <input type="hidden" name="crit1"
+								value="Economico" /> <input type="range" name="critValue1"
+								value="500000" min="100000" list="tickmarks1" max="1500000"
+								onchange="document.getElementById('range1').value=this.value" />
+							<input type="text" id="range1" readonly="readonly" value="500000">
+						</div>
+						<div class="form-group">
+							Es buen Precio : <input type="hidden" name="crit2"
+								value="Estandar" /> <input type="range" name="critValue2"
+								list="tickmarks2" value="2500000" min="1500000" max="3000000"
+								onchange="document.getElementById('range2').value=this.value" />
+							<input type="text" id="range2" readonly="readonly"
+								value="2500000">
+						</div>
+						<div class="form-group">
+							Es precio Injusto : <input type="hidden" name="crit3"
+								value="Costoso" /> <input type="range" list="tickmarks3"
+								name="critValue3" value="4000000"
+								onchange="document.getElementById('range3').value=this.value"
+								min="3000000" max="5000000" /> <input type="text" id="range3"
+								value="4000000" readonly="readonly">
+						</div>
+					</div>
+
+
+				</div>
+				<div class="form-group">
+					<label>Configuracion Calidad</label>
+
+				</div>
+
+
+				<input type="submit" class="btn btn-primary" value="Calcular">
+
+			</form>
+
+			<br />
+
+			<div th:if="${answer !=null}" >
+			<div class="alert alert-success">
+				El computador comprado por el cliente <label th:text="${economia}"></label>
+				de Precio justo y <label th:text="${quality}"></label> De calidad, 
+				
+				<label th:text="${answer}"></label> Satisfactoria la compra
+				</div>
+
+			</div>
+
+
+
+		</div>
+
+
+
+
+	</div>
+</body>
+</html>
